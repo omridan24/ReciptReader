@@ -23,9 +23,9 @@ def ocr_image(image_path):
 
 
 
-images = list_image_files("Recipts/")
+images = list_image_files("Receipts/")
 for img in images:
-    img_path= "Recipts/"+img
+    img_path= "Receipts/"+img
     try:
         result_text = ocr_image(img_path)
         print("OCR Result:")
