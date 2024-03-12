@@ -1,7 +1,7 @@
 from PIL import Image
 from reportlab.pdfgen import canvas
 import os
-"""
+
 def convert_image_to_pdf(image_path, output_pdf):
     try:
         # Open the image and get its dimensions
@@ -28,25 +28,24 @@ def convert_image_to_pdf(image_path, output_pdf):
 
     
 
+def get_folder_of_pdfs(input_folder_path, output_folder_path):
+    os.makedirs(output_folder_path, exist_ok=True)
+    # List all files in the input folder
+    files = os.listdir(input_folder_path)
+
+    # Iterate through each file in the folder
+    for file_name in files:
+        # Construct the full path to the image file
+        image_path = os.path.join(input_folder_path, file_name)
+
+        # Check if the item is a file and ends with a common image extension
+        if os.path.isfile(image_path) and file_name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
+            # Construct the output PDF path
+            output_pdf_path = os.path.join(output_folder_path, os.path.splitext(file_name)[0] + ".pdf")
+
+            # Convert the image to a PDF
+            convert_image_to_pdf(image_path, output_pdf_path)
 
 input_folder_path = "Recipts"
 output_folder_path = "Recipts_as_PDF"
-os.makedirs(output_folder_path, exist_ok=True)
-# List all files in the input folder
-files = os.listdir(input_folder_path)
-
-# Iterate through each file in the folder
-for file_name in files:
-    # Construct the full path to the image file
-    image_path = os.path.join(input_folder_path, file_name)
-
-    # Check if the item is a file and ends with a common image extension
-    if os.path.isfile(image_path) and file_name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
-        # Construct the output PDF path
-        output_pdf_path = os.path.join(output_folder_path, os.path.splitext(file_name)[0] + ".pdf")
-
-        # Convert the image to a PDF
-        convert_image_to_pdf(image_path, output_pdf_path)
-
-"""
-print("hello")
+get_folder_of_pdfs(input_folder_path,output_folder_path)
