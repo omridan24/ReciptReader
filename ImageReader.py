@@ -47,3 +47,4 @@ def read_pdf(file_path):
 pdf_text = read_pdf('Recipts_as_PDF/TestPDFfile.pdf')
 print(pdf_text)
 """
+print("check")
